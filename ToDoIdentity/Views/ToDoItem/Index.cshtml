@@ -1,0 +1,40 @@
+﻿@model ViewModel
+
+@{
+    ViewData["Title"] = "ToDoItems";
+
+}
+
+<h1>@Model.UserName さんのタスク一覧</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                タスク
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @item.ToDo
+                </td>
+                <td>
+                    <form asp-action="Delete" asp-route-id="@item.Id">
+                        <button type="submit" class="btn btn-primary">完了</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="新しいタスク" name="toDoName">
+    </div>
+    <button type="submit" class="btn btn-primary">作成</button>
+</form>
